@@ -56,7 +56,7 @@ public class AlmoxarifadoControle {
             return false;
         }
     }
-
+    //
     // Função de deletar (Delete)
     public boolean deletarProduto(int codigo) {
         Produto itemParaDeletar = buscarItemPorCodigo(codigo);

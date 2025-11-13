@@ -8,7 +8,7 @@ public class Main {
         AlmoxarifadoControle servico = new AlmoxarifadoControle();
         boolean executando = true;
 
-
+        //
         // (codigo, nome, categoria, fornecedor, estoque)
 
         while (executando) {

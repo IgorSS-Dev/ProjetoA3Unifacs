@@ -1,5 +1,6 @@
-// Classe para cadastrar produtos
+
 public class Produto {
+    // Atributo para gerar o código do produto autoticamente
     private static int proximoCodigo = 1;
 
     private int codigo;
@@ -12,6 +13,8 @@ public class Produto {
      //
 
     public Produto(String nome, String categoria, String fornecedor, int estoque) {
+
+        // Contador do código
         this.codigo = proximoCodigo;
         proximoCodigo++;
         this.nome = nome;
