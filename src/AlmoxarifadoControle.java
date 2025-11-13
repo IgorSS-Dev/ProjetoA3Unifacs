@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-// O nome da classe está ok!
+
 public class AlmoxarifadoControle {
 
     // "Banco de dados" usando arraylist
@@ -14,6 +14,7 @@ public class AlmoxarifadoControle {
         System.out.println("Novo item adicionado ao estoque com sucesso: " + novoProduto.getNome());
     }
 
+    // Função de leitura / exeibição (READ)
     public void listarProdutos() {
         if (listaDeProdutos.isEmpty()) {
             System.out.println("Nenhum item foi encontrado no estoque.");

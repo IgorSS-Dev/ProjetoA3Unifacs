@@ -59,10 +59,10 @@ public class Produto {
     @Override
     public String toString() {
         return "Código: " + codigo +
-                " | Nome: " + nome +
-                " | Categoria: " + categoria +
-                " | Fornecedor: " + fornecedor +
-                " | Estoque: " + estoque;
+                "\n | Nome: " + nome +
+                "\n | Categoria: " + categoria +
+                "\n | Fornecedor: " + fornecedor +
+                "\n | Estoque: " + estoque;
 
 
     }
