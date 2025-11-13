@@ -8,8 +8,8 @@ public class Produto {
     private String fornecedor;
     private int estoque;
 
-    //
-
+    
+     //
 
     public Produto(String nome, String categoria, String fornecedor, int estoque) {
         this.codigo = proximoCodigo;

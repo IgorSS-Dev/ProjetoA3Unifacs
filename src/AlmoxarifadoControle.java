@@ -7,7 +7,7 @@ public class AlmoxarifadoControle {
     // "Banco de dados" usando arraylist
     private List<Produto> listaDeProdutos = new ArrayList<>();
 
-    // Função de cadastro (adicionar) de produto
+    // Função de cadastro (adicionar) de produto.
     public void adicionarProduto(String nome, String categoria, String fornecedor, int estoque) {
         Produto novoProduto = new Produto(nome, categoria, fornecedor, estoque);
         listaDeProdutos.add(novoProduto);
