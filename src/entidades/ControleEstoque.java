@@ -1,11 +1,23 @@
+package entidades;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class AlmoxarifadoControle {
-
-    // "Banco de dados" usando arraylist
+public class ControleEstoque {
     private List<Produto> listaDeProdutos = new ArrayList<>();
+    public ControleEstoque() {
+        this.listaDeProdutos.add(new Produto("Teclado Gamer", "Periferico", "Mancer", 50));
+        this.listaDeProdutos.add(new Produto("Teclado Gamer", "Periferico", "Mancer", 50));
+        this.listaDeProdutos.add(new Produto("Teclado Gamer", "Periferico", "Mancer", 50));
+        this.listaDeProdutos.add(new Produto("Teclado Gamer", "Periferico", "Mancer", 50));
+        this.listaDeProdutos.add(new Produto("Teclado Gamer", "Periferico", "Mancer", 50));
+        this.listaDeProdutos.add(new Produto("Teclado Gamer", "Periferico", "Mancer", 50));
+        this.listaDeProdutos.add(new Produto("Teclado Gamer", "Periferico", "Mancer", 50));
+
+    }
+    // "Banco de dados" usando arraylist
+
 
     // Função de cadastro (adicionar) de produto.
     public void adicionarProduto(String nome, String categoria, String fornecedor, int estoque) {
@@ -23,7 +35,7 @@ public class AlmoxarifadoControle {
 
         System.out.println("------ Inventário do Almoxarifado ------");
         for (Produto item : listaDeProdutos) {
-            System.out.println(item); // Isso vai usar o .toString() da classe Produto
+            System.out.println(item); // Isso vai usar o .toString() da classe entidades.Produto
         }
         System.out.println("---------------------------------------");
     }
@@ -38,6 +50,11 @@ public class AlmoxarifadoControle {
             }
         }
         return null; // Para caso não encontre o código
+    }
+    //Método para verificar se o estoque está vazio
+    // Será usado pela classe Main
+    public boolean estaVazio() {
+        return this.listaDeProdutos.isEmpty();
     }
 
     // Função de atualizar (Update)

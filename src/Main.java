@@ -1,14 +1,14 @@
+import entidades.ControleEstoque;
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
 
-        AlmoxarifadoControle servico = new AlmoxarifadoControle();
+        ControleEstoque servico = new ControleEstoque();
         boolean executando = true;
 
-        //
         // (codigo, nome, categoria, fornecedor, estoque)
 
         while (executando) {
@@ -57,6 +57,11 @@ public class Main {
 
                 case 3: // UPDATE
 
+                    if (servico.estaVazio()) {
+                        System.out.println("Não há produtos cadastrados para atualizar ");
+                        break; // Para sair do switch e voltar ao menu
+                    }
+
                     System.out.println("\n--- Atualizar Item ---");
                     System.out.print("Digite o código do item para atualizar: ");
                     int idUpdate = sc.nextInt();
@@ -81,6 +86,11 @@ public class Main {
                     break;
 
                 case 4: // DELETE
+
+                    if (servico.estaVazio()) {
+                        System.out.println("Não há produtos cadastrados para deletar ");
+                        break; // Para sair do switch e voltar ao menu
+                    }
 
                     System.out.println("\n--- Deletar Item ---");
                     System.out.print("Digite o código do produto para deletar: ");
