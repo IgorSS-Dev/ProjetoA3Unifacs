@@ -35,12 +35,12 @@ public class ControleEstoque {
 
         System.out.println("------ Inventário do Almoxarifado ------");
         for (Produto item : listaDeProdutos) {
-            System.out.println(item); // Isso vai usar o .toString() da classe entidades.Produto
+            System.out.println(item); // Isso vai usar o toString da classe Produto
         }
         System.out.println("---------------------------------------");
     }
 
-    // Método para facilitar a busca do produto pelo código
+    // macete para facilitar a busca do produto pelo código
     private Produto buscarItemPorCodigo(int codigo) {
 
         for (Produto item : listaDeProdutos) {
@@ -51,7 +51,7 @@ public class ControleEstoque {
         }
         return null; // Para caso não encontre o código
     }
-    //Método para verificar se o estoque está vazio
+    //macete para verificar se o estoque está vazio
     // Será usado pela classe Main
     public boolean estaVazio() {
         return this.listaDeProdutos.isEmpty();
