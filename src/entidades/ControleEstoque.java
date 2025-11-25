@@ -5,25 +5,29 @@ import java.util.List;
 
 
 public class ControleEstoque {
-    private List<Produto> listaDeProdutos = new ArrayList<>();
-    public ControleEstoque() {
-        this.listaDeProdutos.add(new Produto("Teclado Gamer", "Periferico", "Mancer", 50));
-        this.listaDeProdutos.add(new Produto("Teclado Gamer", "Periferico", "Mancer", 50));
-        this.listaDeProdutos.add(new Produto("Teclado Gamer", "Periferico", "Mancer", 50));
-        this.listaDeProdutos.add(new Produto("Teclado Gamer", "Periferico", "Mancer", 50));
-        this.listaDeProdutos.add(new Produto("Teclado Gamer", "Periferico", "Mancer", 50));
-        this.listaDeProdutos.add(new Produto("Teclado Gamer", "Periferico", "Mancer", 50));
-        this.listaDeProdutos.add(new Produto("Teclado Gamer", "Periferico", "Mancer", 50));
+    // Uso do arraylist para simular um "banco de dados"
+    private static List<Produto> listaDeProdutos = new ArrayList<>();
 
+    // Bloco de inicialização de código (Acontece automaticamente, sem chamar o construtor)
+    // É estático pois usa apenas uma vez
+    static {
+        // Exemplo de lista de Hardware
+        listaDeProdutos.add(new Hardware("Processador Core i5-13600K", "Hardware", 1899.90, "Intel", 20, "BX8071513600K", 12, 125, "LGA 1700"));
+        listaDeProdutos.add(new Hardware("Placa de Vídeo RTX 4060 OC", "Hardware", 2399.90, "Gigabyte", 15, "GV-N4060OC", 24, 115, "8GB GDDR6"));
+        listaDeProdutos.add(new Hardware("SSD 1TB 980 Pro", "Hardware", 699.90, "Samsung", 30, "MZ-V8P1T0B", 8, 60, "Leitura 7000MB/s"));
+        listaDeProdutos.add(new Hardware("Placa Mãe Asus TUF Gaming B550M", "Hardware", 949.90, "Asus", 12, "TUF-B550M-PLUS", 12, 50, "Socket AM4"));
+        listaDeProdutos.add(new Hardware("Fonte Corsair RM750e 750W", "Hardware", 699.90, "Corsair", 25, "CP-9020248", 60, 750, "80 Plus Gold"));
+        listaDeProdutos.add(new Hardware("HD Seagate Barracuda 2TB", "Hardware", 329.90, "Seagate", 40, "ST2000DM008", 12, 8, "7200RPM SATA III"));
+        listaDeProdutos.add(new Hardware("Memória RAM XPG Spectrix D35G 8GB", "Hardware", 169.90, "XPG", 60, "AX4U32008G16A-SBKD35G", 120, 3, "DDR4 3200MHz CL16"));
     }
-    // "Banco de dados" usando arraylist
-
 
     // Função de cadastro (adicionar) de produto.
-    public void adicionarProduto(String nome, String categoria, String fornecedor, int estoque) {
-        Produto novoProduto = new Produto(nome, categoria, fornecedor, estoque);
-        listaDeProdutos.add(novoProduto);
-        System.out.println("Novo item adicionado ao estoque com sucesso: " + novoProduto.getNome());
+    public void adicionarProduto(Produto produtoParaAdicionar) {
+        /* Como há duas classes que herdem atributos de produto, foi necesssário o uso do polimorfismo
+        pois assim aceita qualquer objeto que seja um Produto
+        */
+        listaDeProdutos.add(produtoParaAdicionar);
+        System.out.println("Novo item adicionado ao estoque com sucesso (código: " + produtoParaAdicionar.getCodigo() + " )" + produtoParaAdicionar.getNome());
     }
 
     // Função de leitura / exeibição (READ)
@@ -40,40 +44,46 @@ public class ControleEstoque {
         System.out.println("---------------------------------------");
     }
 
-    // macete para facilitar a busca do produto pelo código
-    private Produto buscarItemPorCodigo(int codigo) {
-
+    // Metodo para facilitar a busca do produto pelo código
+    // É utilizado pela classe Main
+    public Produto buscarItemPorCodigo(int codigo) {
+        Produto produto = null;
         for (Produto item : listaDeProdutos) {
-
             if (item.getCodigo() == codigo) {
-                return item;
+                produto = item; // Retorna o objeto real que está na memória
             }
         }
-        return null; // Para caso não encontre o código
+        return produto;
     }
-    //macete para verificar se o estoque está vazio
-    // Será usado pela classe Main
+
+    /*
+    por enquanto eu comentei para testes
+    public void atualizarProduto(Produto produto, int novaGarantia ) {
+        for (Produto obj : listaDeProdutos) {
+            if (obj instanceof Hardware) {
+                Hardware hardware = (Hardware) produto;
+                hardware.setGarantiaMeses(novaGarantia);
+            }
+
+        }
+
+    }
+    public void atualizarProduto(Produto produto, String novaCor ) {
+        if (produto instanceof Periferico) {
+            Periferico periferico = (Periferico) produto;
+            periferico.setCor(novaCor);
+        }
+
+
+    }
+    */
+
+    //Metodo para verificar se o estoque está vazio
+    // Será usado pela classe Main (nas funções update e delete)
     public boolean estaVazio() {
         return this.listaDeProdutos.isEmpty();
     }
 
-    // Função de atualizar (Update)
-    public boolean atualizarProduto(int codigo, String novoNome, String novaCategoria, String novoFornecedor, int novoEstoque) {
-        Produto itemParaAtualizar = buscarItemPorCodigo(codigo);
-
-        if (itemParaAtualizar != null) {
-            itemParaAtualizar.setNome(novoNome);
-            itemParaAtualizar.setCategoria(novaCategoria);
-            itemParaAtualizar.setFornecedor(novoFornecedor);
-            itemParaAtualizar.setEstoque(novoEstoque);
-            System.out.println("Item " + codigo + " atualizado com sucesso.");
-            return true;
-        } else {
-            System.out.println("Erro: Item com código " + codigo + " não foi encontrado.");
-            return false;
-        }
-    }
-    //
     // Função de deletar (Delete)
     public boolean deletarProduto(int codigo) {
         Produto itemParaDeletar = buscarItemPorCodigo(codigo);
@@ -84,9 +94,11 @@ public class ControleEstoque {
 
             return true;
 
-        } else {
-            System.out.println("Erro: Item com Código " + codigo + " não encontrado.");
+        }
+            System.out.println("Erro: O item com Código " + codigo + " não foi encontrado.");
+            System.out.println("Por favor digite um código válido");
             return false;
         }
+
     }
-}
+
