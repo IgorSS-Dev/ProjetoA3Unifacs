@@ -21,7 +21,8 @@ public class ControleEstoque {
         listaDeProdutos.add(new Hardware("Memória RAM XPG Spectrix D35G 8GB", "Hardware", 169.90, "XPG", 60, "AX4U32008G16A-SBKD35G", 120, 3, "DDR4 3200MHz CL16"));
     }
 
-    // Função de cadastro (adicionar) de produto.
+
+    // Função de cadastro (adicionar/criar) de produto.
     public void adicionarProduto(Produto produtoParaAdicionar) {
         /* Como há duas classes que herdem atributos de produto, foi necesssário o uso do polimorfismo
         pois assim aceita qualquer objeto que seja um Produto
@@ -37,7 +38,7 @@ public class ControleEstoque {
             return;
         }
 
-        System.out.println("------ Inventário do Almoxarifado ------");
+        System.out.println("------ Inventário do Estoque ------");
         for (Produto item : listaDeProdutos) {
             System.out.println(item); // Isso vai usar o toString da classe Produto
         }
@@ -55,28 +56,6 @@ public class ControleEstoque {
         }
         return produto;
     }
-
-    /*
-    por enquanto eu comentei para testes
-    public void atualizarProduto(Produto produto, int novaGarantia ) {
-        for (Produto obj : listaDeProdutos) {
-            if (obj instanceof Hardware) {
-                Hardware hardware = (Hardware) produto;
-                hardware.setGarantiaMeses(novaGarantia);
-            }
-
-        }
-
-    }
-    public void atualizarProduto(Produto produto, String novaCor ) {
-        if (produto instanceof Periferico) {
-            Periferico periferico = (Periferico) produto;
-            periferico.setCor(novaCor);
-        }
-
-
-    }
-    */
 
     //Metodo para verificar se o estoque está vazio
     // Será usado pela classe Main (nas funções update e delete)
